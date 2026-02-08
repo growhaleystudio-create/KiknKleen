@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KiknKleen - Premium Shoe Care</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#111827', // Blackish
+                        secondary: '#F3F4F6', // Light Gray
+                        accent: '#EAB308', // Yellow hint
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-delayed': 'float 6s ease-in-out 3s infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        
+        /* Comparison Slider Styles */
+        .comparison-container {
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+        
+        /* Filter untuk mensimulasikan sepatu kotor pada sisi Before */
+        .dirty-filter {
+            filter: sepia(0.4) contrast(1.1) brightness(0.85) grayscale(0.2);
+        }
+
+        /* Floating Animation Keyframes */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800 font-sans antialiased">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-md z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <i class="fa-solid fa-shoe-prints text-2xl text-black"></i>
+                    <span class="font-bold text-2xl tracking-tighter text-black uppercase">KiknKleen</span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-600 hover:text-black font-medium transition">Beranda</a>
+                    <a href="#services" class="text-gray-600 hover:text-black font-medium transition">Layanan</a>
+                    <a href="#about" class="text-gray-600 hover:text-black font-medium transition">Tentang Kami</a>
+                    <a href="#contact" class="bg-black text-white px-6 py-2.5 rounded-full font-medium hover:bg-gray-800 transition shadow-lg transform hover:-translate-y-0.5">
+                        Cuci Sekarang
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-black focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full z-40">
+            <div class="px-4 pt-2 pb-6 space-y-1 shadow-lg">
+                <a href="#home" class="block px-3 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-md">Beranda</a>
+                <a href="#services" class="block px-3 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-md">Layanan</a>
+                <a href="#about" class="block px-3 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-md">Tentang Kami</a>
+                <a href="#contact" class="block mt-4 text-center w-full bg-black text-white px-6 py-3 rounded-lg font-medium">Cuci Sekarang</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden relative">
+        <!-- Removed the background blob decoration to be perfectly clean -->
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Text Content -->
+                <div class="space-y-8 animate-fade-in-up order-2 lg:order-1">
+                    <div class="inline-block px-3 py-1 bg-gray-100 rounded-full text-xs font-semibold tracking-wide text-gray-600 uppercase mb-2">
+                        Premium Shoe Care Indonesia
+                    </div>
+                    <h1 class="text-5xl lg:text-6xl font-bold leading-tight text-gray-900">
+                        Kembalikan <br>
+                        <span class="text-gray-400">Kilau Sepatu</span> <br>
+                        Kesayanganmu
+                    </h1>
+                    <p class="text-lg text-gray-500 max-w-lg leading-relaxed">
+                        Layanan cuci sepatu profesional dengan standar premium. Kami membersihkan noda membandel, yellowing, dan bau tidak sedap hingga tuntas.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#contact" class="px-8 py-4 bg-black text-white rounded-lg font-semibold text-center hover:bg-gray-800 transition shadow-xl">
+                            Cuci Sekarang <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </a>
+                        <a href="#services" class="px-8 py-4 bg-white border border-gray-200 text-gray-700 rounded-lg font-semibold text-center hover:bg-gray-50 transition">
+                            Lihat Layanan
+                        </a>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="pt-8 flex items-center gap-12 border-t border-gray-100 mt-8">
+                        <div>
+                            <p class="text-3xl font-bold text-gray-900">500+</p>
+                            <p class="text-sm text-gray-500">Sepatu Dicuci</p>
+                        </div>
+                        <div>
+                            <p class="text-3xl font-bold text-gray-900">4.9</p>
+                            <p class="text-sm text-gray-500">Rating Pelayanan</p>
+                        </div>
+                        <div>
+                            <p class="text-3xl font-bold text-gray-900">3</p>
+                            <p class="text-sm text-gray-500">Tahun Pengalaman</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Image (Floating & No Background) -->
+                <div class="relative lg:h-[600px] flex items-center justify-center order-1 lg:order-2">
+                    
+                    <!-- Main Shoe Image with Float Animation -->
+                    <!-- Replaced with a Nike Air Force 1 on PURE WHITE background to blend in -->
+                    <img src="https://images.unsplash.com/photo-1600269452121-4f2416e55c28?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" 
+                         alt="Nike Air Force 1 Floating" 
+                         class="relative z-10 w-full max-w-lg drop-shadow-2xl animate-float -rotate-12 mix-blend-multiply">
+                    
+                    <!-- Floating Badge Card (Floats with delay) -->
+                    <div class="absolute bottom-10 right-0 md:right-10 bg-white/90 backdrop-blur-sm p-5 rounded-2xl shadow-xl z-20 animate-float-delayed border border-white">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
+                                <i class="fa-solid fa-star text-accent text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-400 uppercase font-semibold tracking-wider">Top Service</p>
+                                <p class="font-bold text-gray-900">Deep Clean +</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Removed abstract circle for cleaner look -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-16">
+                <p class="text-gray-500 uppercase tracking-widest text-sm font-semibold mb-2">Layanan Kami</p>
+                <h2 class="text-4xl font-bold text-gray-900">Perawatan Premium <br><span class="text-gray-400">untuk Sepatu Anda</span></h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1: Deep Clean -->
+                <div class="group bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition duration-300 border border-transparent hover:border-gray-100">
+                    <div class="h-48 mb-6 bg-gray-100 rounded-xl overflow-hidden flex items-center justify-center relative">
+                        <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=500&q=80" alt="Deep Clean" class="object-cover w-full h-full group-hover:scale-110 transition duration-500">
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Deep Clean</h3>
+                    <p class="text-gray-500 text-sm mb-6 leading-relaxed">Pembersihan menyeluruh pada bagian luar, midsole, dan insole. Menghilangkan debu dan noda lumpur ringan.</p>
+                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
+                        <span class="text-xs text-gray-400">Mulai dari</span>
+                        <span class="text-lg font-bold text-gray-900">Rp 75.000</span>
+                    </div>
+                </div>
+
+                <!-- Card 2: Unyellowing -->
+                <div class="group bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition duration-300 border border-transparent hover:border-gray-100">
+                    <div class="h-48 mb-6 bg-gray-100 rounded-xl overflow-hidden flex items-center justify-center relative">
+                        <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=500&q=80" alt="Unyellowing" class="object-cover w-full h-full group-hover:scale-110 transition duration-500">
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Unyellowing</h3>
+                    <p class="text-gray-500 text-sm mb-6 leading-relaxed">Mengembalikan warna putih pada sole sepatu yang menguning (oksidasi) agar terlihat baru kembali.</p>
+                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
+                        <span class="text-xs text-gray-400">Mulai dari</span>
+                        <span class="text-lg font-bold text-gray-900">Rp 100.000</span>
+                    </div>
+                </div>
+
+                <!-- Card 3: Repair -->
+                <div class="group bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition duration-300 border border-transparent hover:border-gray-100">
+                    <div class="h-48 mb-6 bg-gray-100 rounded-xl overflow-hidden flex items-center justify-center relative">
+                        <img src="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?auto=format&fit=crop&w=500&q=80" alt="Repair" class="object-cover w-full h-full group-hover:scale-110 transition duration-500">
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Repair & Glue</h3>
+                    <p class="text-gray-500 text-sm mb-6 leading-relaxed">Layanan pengeleman ulang atau perbaikan sol yang lepas. Menggunakan lem standar industri sepatu.</p>
+                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
+                        <span class="text-xs text-gray-400">Mulai dari</span>
+                        <span class="text-lg font-bold text-gray-900">Rp 150.000</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About/Story Section -->
+    <section id="about" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <!-- Image Grid -->
+                <div class="relative">
+                    <div class="grid grid-cols-2 gap-4">
+                        <img src="https://images.unsplash.com/photo-1597045566677-8cf032ed6634?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="rounded-2xl shadow-lg w-full h-64 object-cover transform translate-y-8" alt="Premium Clean Sneakers">
+                        <img src="https://images.unsplash.com/photo-1605733513597-a8f8341084e6?auto=format&fit=crop&w=500&q=80" class="rounded-2xl shadow-lg w-full h-64 object-cover" alt="Shoe Care Process">
+                    </div>
+                    <!-- Decor element -->
+                    <div class="absolute -z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[110%] h-[80%] bg-gray-100 rounded-3xl"></div>
+                </div>
+
+                <!-- Content -->
+                <div>
+                    <p class="text-gray-500 uppercase tracking-widest text-sm font-semibold mb-2">Tentang Kami</p>
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">Sepatu Anda <br>Menyimpan Cerita. <br><span class="text-gray-400">Kami Merawatnya.</span></h2>
+                    
+                    <p class="text-gray-500 mb-8 leading-relaxed">
+                        Sepatu lebih dari sekadar alas kaki. Mereka menemani langkah Anda meraih mimpi. 
+                        Itulah mengapa kami merawat setiap pasang sepatu dengan penuh perhatian dan detail.
+                        Tim kami terlatih untuk menangani berbagai jenis bahan, mulai dari Canvas, Suede, Leather, hingga Nubuck.
+                    </p>
+
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-black">
+                                <i class="fa-solid fa-flask"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Deterjen Khusus Premium</h4>
+                                <p class="text-sm text-gray-500 mt-1">Kami menggunakan sabun natural yang aman untuk bahan sepatu dan lingkungan.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-black">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Pengerjaan Tepat Waktu</h4>
+                                <p class="text-sm text-gray-500 mt-1">Sistem tracking kami memastikan sepatu Anda selesai sesuai jadwal yang dijanjikan.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-black">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Garansi Cuci Kembali</h4>
+                                <p class="text-sm text-gray-500 mt-1">Jika hasil kurang bersih, kami akan mencucinya kembali tanpa biaya tambahan.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Before After Section (Dynamic Slider) -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Interactive Comparison Slider -->
+                <div class="order-2 lg:order-1 relative group select-none">
+                    <div id="comparison-container" class="relative w-full h-[400px] rounded-3xl overflow-hidden shadow-2xl cursor-ew-resize">
+                        
+                        <!-- AFTER Image (Background) -->
+                        <img id="after-img" src="https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=800&q=80" 
+                             alt="Clean Shoe" class="absolute top-0 left-0 w-full h-full object-cover select-none">
+                        
+                        <!-- BEFORE Image (Foreground / Clipped) -->
+                        <div id="before-wrapper" class="absolute top-0 left-0 h-full w-1/2 overflow-hidden border-r-4 border-white/80 z-10">
+                             <!-- Using the SAME image but with CSS filters to simulate dirty/yellowing -->
+                            <img id="before-img" src="https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=800&q=80" 
+                                 class="absolute top-0 left-0 max-w-none h-full object-cover dirty-filter select-none"
+                                 style="width: 100%;"> 
+                        </div>
+
+                        <!-- Drag Handle -->
+                        <div id="slider-handle" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-xl flex items-center justify-center z-20 pointer-events-none text-black">
+                            <i class="fa-solid fa-arrows-left-right text-gray-600"></i>
+                        </div>
+
+                        <!-- Labels -->
+                        <div class="absolute top-6 left-6 bg-black/70 backdrop-blur-sm text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider z-20">Before</div>
+                        <div class="absolute top-6 right-6 bg-white/90 backdrop-blur-sm text-black px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider z-20">After</div>
+
+                        <!-- Instruction Overlay (Fades out on hover) -->
+                        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-black/60 backdrop-blur text-white text-xs px-4 py-2 rounded-full opacity-100 group-hover:opacity-0 transition-opacity duration-500 pointer-events-none z-20">
+                            Geser untuk melihat hasil
+                        </div>
+                    </div>
+                </div>
+
+                <div class="order-1 lg:order-2">
+                    <p class="text-gray-500 uppercase tracking-widest text-sm font-semibold mb-2">Hasil Pengerjaan</p>
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">Before & After <br><span class="text-gray-400">Transformasi Nyata</span></h2>
+                    <h3 class="text-2xl font-bold mb-4">Nike Air Force 1</h3>
+                    <p class="text-gray-500 mb-8">
+                        Geser slider pada gambar untuk melihat perbedaan detail. Teknologi Deep Clean + Unyellowing kami mampu mengangkat noda kusam menahun dan mengembalikan warna asli sepatu.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm">
+                            <div class="text-3xl font-bold text-gray-900 mb-1">100%</div>
+                            <div class="text-sm text-gray-500">Warna Kembali</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm">
+                            <div class="text-3xl font-bold text-gray-900 mb-1">0%</div>
+                            <div class="text-sm text-gray-500">Noda Tersisa</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section (Dark) -->
+    <section id="contact" class="bg-black text-white py-20 lg:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <!-- Contact Info -->
+                <div>
+                    <p class="text-gray-400 uppercase tracking-widest text-sm font-semibold mb-2">Booking & Konsultasi</p>
+                    <h2 class="text-4xl lg:text-5xl font-bold mb-6">Mulai Perawatan <br><span class="text-gray-500">Sepatu Anda</span></h2>
+                    <p class="text-gray-400 mb-12 max-w-md">
+                        Isi formulir di samping atau hubungi kami langsung melalui WhatsApp untuk konsultasi gratis mengenai kondisi sepatu Anda.
+                    </p>
+
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-4 group cursor-pointer">
+                            <div class="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center group-hover:bg-gray-700 transition">
+                                <i class="fa-brands fa-whatsapp text-2xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500 uppercase">WhatsApp</p>
+                                <p class="text-lg font-bold">+62 812-3456-7890</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 group cursor-pointer">
+                            <div class="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center group-hover:bg-gray-700 transition">
+                                <i class="fa-solid fa-location-dot text-2xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500 uppercase">Lokasi Workshop</p>
+                                <p class="text-lg font-bold">Jakarta Selatan, Gandaria Selatan</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <div class="bg-gray-900 p-8 rounded-3xl border border-gray-800">
+                    <form class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Nama Lengkap</label>
+                            <input type="text" placeholder="Cth: Budi Santoso" class="w-full bg-black border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-white transition">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Nomor WhatsApp</label>
+                            <input type="tel" placeholder="Cth: 0812..." class="w-full bg-black border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-white transition">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Pilih Layanan</label>
+                            <select class="w-full bg-black border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-white transition appearance-none">
+                                <option>Deep Clean</option>
+                                <option>Unyellowing</option>
+                                <option>Repair & Glue</option>
+                                <option>Repaint</option>
+                            </select>
+                        </div>
+                        <button type="button" class="w-full bg-white text-black font-bold py-4 rounded-lg hover:bg-gray-200 transition transform hover:scale-[1.02]">
+                            Kirim Booking <i class="fa-solid fa-paper-plane ml-2"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 pt-16 pb-8 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <!-- Brand -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-shoe-prints text-xl text-black"></i>
+                        <span class="font-bold text-xl uppercase">KiknKleen</span>
+                    </div>
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        Layanan cuci sepatu nomor satu dengan treatment premium. Kami peduli pada detail agar Anda bisa melangkah dengan percaya diri.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 bg-black text-white rounded flex items-center justify-center hover:bg-gray-800 transition"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 bg-black text-white rounded flex items-center justify-center hover:bg-gray-800 transition"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="#" class="w-10 h-10 bg-black text-white rounded flex items-center justify-center hover:bg-gray-800 transition"><i class="fa-solid fa-envelope"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm text-gray-500">
+                        <li><a href="#services" class="hover:text-black transition">Layanan</a></li>
+                        <li><a href="#about" class="hover:text-black transition">Tentang Kami</a></li>
+                        <li><a href="#" class="hover:text-black transition">Tracking Order</a></li>
+                        <li><a href="#" class="hover:text-black transition">Syarat & Ketentuan</a></li>
+                    </ul>
+                </div>
+
+                <!-- Operation Hours -->
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-4">Jam Operasional</h4>
+                    <ul class="space-y-4 text-sm text-gray-500">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-regular fa-clock mt-1"></i>
+                            <div>
+                                <span class="block font-semibold text-gray-900">Senin - Sabtu</span>
+                                09:00 - 20:00 WIB
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-regular fa-clock mt-1"></i>
+                            <div>
+                                <span class="block font-semibold text-gray-900">Minggu</span>
+                                10:00 - 18:00 WIB
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                 <!-- Address Short -->
+                 <div>
+                    <h4 class="font-bold text-gray-900 mb-4">Lokasi</h4>
+                    <p class="text-sm text-gray-500 mb-4">Jl. Gandaria Tengah II No. 24, Kebayoran Baru, Jakarta Selatan 12130</p>
+                    <a href="#" class="text-sm font-semibold underline decoration-2 underline-offset-4 hover:text-gray-600">Lihat di Google Maps</a>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
+                <p>&copy; 2024 KiknKleen Indonesia. All rights reserved.</p>
+                <p class="mt-2 md:mt-0">Designed with <i class="fa-solid fa-heart text-red-500 mx-1"></i> for shoe lovers.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile Menu Logic
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        if(btn && menu){
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+            });
+            
+            // Close menu when clicking links
+            menu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    menu.classList.add('hidden');
+                });
+            });
+        }
+
+        // Comparison Slider Logic
+        const container = document.getElementById('comparison-container');
+        const beforeWrapper = document.getElementById('before-wrapper');
+        const beforeImg = document.getElementById('before-img');
+        const sliderHandle = document.getElementById('slider-handle');
+
+        if(container && beforeWrapper && beforeImg && sliderHandle) {
+            
+            // Function to handle the move logic
+            const move = (e) => {
+                const rect = container.getBoundingClientRect();
+                let x = (e.clientX || e.touches[0].clientX) - rect.left;
+                
+                // Clamp values between 0 and width
+                x = Math.max(0, Math.min(x, rect.width));
+                
+                // Update width of the "Before" wrapper
+                beforeWrapper.style.width = `${x}px`;
+                
+                // Update handle position
+                sliderHandle.style.left = `${x}px`;
+            };
+
+            // Event Listeners for Mouse
+            container.addEventListener('mousemove', move);
+            container.addEventListener('mousedown', move); // Allow click to jump
+            
+            // Event Listeners for Touch (Mobile)
+            container.addEventListener('touchmove', (e) => {
+                e.preventDefault(); // Prevent scrolling while sliding
+                move(e);
+            });
+
+            // Adjust inner image width on window resize to keep aspect ratio perfect
+            window.addEventListener('resize', () => {
+                beforeImg.style.width = `${container.offsetWidth}px`;
+            });
+
+            // Initial setup
+            beforeImg.style.width = `${container.offsetWidth}px`;
+        }
+    </script>
+</body>
+</html>
