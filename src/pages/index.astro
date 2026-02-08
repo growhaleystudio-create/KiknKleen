@@ -1296,18 +1296,18 @@ import "../styles/global.css";
         >
             <button
                 id="lightbox-close"
-                class="absolute top-4 right-4 text-white hover:text-gray-300 focus:outline-none"
+                class="absolute top-4 right-4 text-white hover:text-gray-300 focus:outline-none z-50"
             >
                 <i class="fa-solid fa-xmark text-4xl"></i>
             </button>
             <div
-                class="relative max-w-5xl w-full h-full flex items-center justify-center"
+                class="relative max-w-5xl w-full h-full flex items-center justify-center pointer-events-none"
             >
                 <img
                     id="lightbox-img"
                     src=""
                     alt="Gallery Fullscreen"
-                    class="max-w-full max-h-full object-contain rounded-lg shadow-2xl transform scale-95 transition-transform duration-300"
+                    class="max-w-full max-h-full object-contain rounded-lg shadow-2xl transform scale-95 transition-transform duration-300 pointer-events-auto"
                 />
             </div>
         </div>
@@ -1435,19 +1435,8 @@ import "../styles/global.css";
 
                 // Close on Background Click
                 lightbox.addEventListener("click", (e) => {
-                    if (
-                        e.target === lightbox ||
-                        e.target.closest(".relative") === null
-                    ) {
-                        // Check if click is outside the image container
-                        // Actually, checking if e.target is lightbox or strictly outside image is better
-                        // But the layout has a wrapper div. Let's start with checking if e.target is the lightbox background.
-                        if (
-                            e.target === lightbox ||
-                            e.target.parentElement === lightbox
-                        ) {
-                            closeLightbox();
-                        }
+                    if (e.target === lightbox) {
+                        closeLightbox();
                     }
                 });
 
