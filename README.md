@@ -6,6 +6,12 @@ npm create astro@latest -- --template minimal
 
 > 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
+## 📖 Dokumentasi Pengguna
+
+Panduan lengkap cara mengedit konten website (teks dan gambar) dapat dilihat di:
+👉 **[USER_GUIDE.md](./USER_GUIDE.md)**
+
+
 ## 🚀 Project Structure
 
 Inside of your Astro project, you'll see the following folders and files:
